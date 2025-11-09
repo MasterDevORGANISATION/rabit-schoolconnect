@@ -1,0 +1,108 @@
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Home, FileUp, CheckSquare, Users, Settings, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarProvider,
+  SidebarTrigger,
+  useSidebar,
+} from "@/components/ui/sidebar";
+import { NavLink } from "@/components/NavLink";
+
+const menuItems = [
+  { title: "Dashboard", url: "/admin", icon: Home },
+  { title: "Student Imports", url: "/admin/imports", icon: FileUp },
+  { title: "Offer Validation", url: "/admin/offers", icon: CheckSquare },
+  { title: "Partners", url: "/admin/partners", icon: Users },
+  { title: "Settings", url: "/admin/settings", icon: Settings },
+];
+
+const AdminSidebar = () => {
+  const { state } = useSidebar();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const collapsed = state === "collapsed";
+
+  const handleLogout = () => {
+    navigate("/");
+  };
+
+  return (
+    <Sidebar className={collapsed ? "w-14" : "w-60"} collapsible="icon">
+      <SidebarContent>
+        <div className="p-4 border-b border-border">
+          {!collapsed && (
+            <div>
+              <h2 className="text-lg font-bold text-primary">Rabit Admin</h2>
+              <p className="text-xs text-muted-foreground">Management Portal</p>
+            </div>
+          )}
+        </div>
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {menuItems.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <NavLink
+                      to={item.url}
+                      end
+                      className="hover:bg-accent/50 transition-colors"
+                      activeClassName="bg-primary text-primary-foreground font-semibold"
+                    >
+                      <item.icon className="h-4 w-4" />
+                      {!collapsed && <span>{item.title}</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <div className="mt-auto p-4 border-t border-border">
+          <Button
+            variant="ghost"
+            className="w-full justify-start"
+            onClick={handleLogout}
+          >
+            <LogOut className="h-4 w-4" />
+            {!collapsed && <span className="ml-2">Logout</span>}
+          </Button>
+        </div>
+      </SidebarContent>
+    </Sidebar>
+  );
+};
+
+const AdminLayout = () => {
+  return (
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full">
+        <AdminSidebar />
+        <div className="flex-1 flex flex-col">
+          <header className="h-14 border-b border-border bg-background flex items-center px-4">
+            <SidebarTrigger />
+            <div className="ml-4 flex-1">
+              <h1 className="text-sm font-semibold">Admin Portal</h1>
+            </div>
+          </header>
+          <main className="flex-1 p-6 bg-muted/30">
+            <Outlet />
+          </main>
+        </div>
+      </div>
+    </SidebarProvider>
+  );
+};
+
+export default AdminLayout;

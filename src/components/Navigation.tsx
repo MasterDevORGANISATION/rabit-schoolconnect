@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Rabbit } from "lucide-react";
 
 const Navigation = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border/50">
       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -25,8 +28,8 @@ const Navigation = () => {
         </div>
         
         <div className="flex items-center gap-3">
-          <Button variant="outline" size="sm">Sign In</Button>
-          <Button size="sm">Get Started</Button>
+          <Button variant="outline" size="sm" onClick={() => navigate("/login")}>Sign In</Button>
+          <Button size="sm" onClick={() => navigate("/login")}>Get Started</Button>
         </div>
       </div>
     </nav>
