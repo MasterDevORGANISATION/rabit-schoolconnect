@@ -2,8 +2,24 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Gift, Star, TrendingUp, Award, CheckCircle } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const StudentNotifications = () => {
+  const { toast } = useToast();
+  
+  const handleMarkAllRead = () => {
+    toast({
+      title: "Marked as read",
+      description: "All notifications have been marked as read.",
+    });
+  };
+  
+  const handleMarkRead = (id: number) => {
+    toast({
+      title: "Marked as read",
+      description: "Notification marked as read.",
+    });
+  };
   const notifications = [
     {
       id: 1,
@@ -33,7 +49,7 @@ const StudentNotifications = () => {
       timestamp: "1 day ago",
       read: true,
       icon: TrendingUp,
-      color: "text-orange-500",
+      color: "text-accent",
     },
     {
       id: 4,
@@ -43,7 +59,7 @@ const StudentNotifications = () => {
       timestamp: "2 days ago",
       read: true,
       icon: Star,
-      color: "text-yellow-500",
+      color: "text-primary",
     },
     {
       id: 5,
@@ -53,7 +69,7 @@ const StudentNotifications = () => {
       timestamp: "3 days ago",
       read: true,
       icon: CheckCircle,
-      color: "text-green-500",
+      color: "text-success",
     },
   ];
 
@@ -65,7 +81,7 @@ const StudentNotifications = () => {
             <h1 className="text-3xl font-bold text-foreground">Notifications</h1>
             <p className="text-muted-foreground">Stay updated with your offers</p>
           </div>
-          <Button variant="outline" size="sm">Mark all as read</Button>
+          <Button variant="outline" size="sm" onClick={handleMarkAllRead}>Mark all as read</Button>
         </div>
 
         <div className="space-y-3">
@@ -92,7 +108,7 @@ const StudentNotifications = () => {
                     <p className="text-xs text-muted-foreground">{notification.timestamp}</p>
                   </div>
                   {!notification.read && (
-                    <Button variant="ghost" size="sm">Mark as read</Button>
+                    <Button variant="ghost" size="sm" onClick={() => handleMarkRead(notification.id)}>Mark as read</Button>
                   )}
                 </div>
               </CardContent>

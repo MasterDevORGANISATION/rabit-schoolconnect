@@ -5,8 +5,24 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Settings as SettingsIcon, Bell, Shield, Database, Mail } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const AdminSettings = () => {
+  const { toast } = useToast();
+  
+  const handleSave = () => {
+    toast({
+      title: "Settings saved",
+      description: "Your settings have been updated successfully.",
+    });
+  };
+
+  const handleExport = (type: string) => {
+    toast({
+      title: "Export started",
+      description: `${type} data is being exported. You'll receive a download link via email.`,
+    });
+  };
   return (
     <div className="space-y-6">
       <div>
@@ -98,7 +114,7 @@ const AdminSettings = () => {
             <div className="space-y-2">
               <Label htmlFor="password">Change Password</Label>
               <Input id="password" type="password" placeholder="Enter new password" />
-              <Button variant="outline" size="sm">Update Password</Button>
+              <Button variant="outline" size="sm" onClick={() => toast({ title: "Password updated", description: "Your password has been changed successfully." })}>Update Password</Button>
             </div>
           </CardContent>
         </Card>
@@ -117,7 +133,7 @@ const AdminSettings = () => {
                 <Label>Export Student Data</Label>
                 <p className="text-sm text-muted-foreground">Download all student records as CSV</p>
               </div>
-              <Button variant="outline" size="sm">Export</Button>
+              <Button variant="outline" size="sm" onClick={() => handleExport('Student')}>Export</Button>
             </div>
             <Separator />
             <div className="flex items-center justify-between">
@@ -125,14 +141,14 @@ const AdminSettings = () => {
                 <Label>Export Offer Data</Label>
                 <p className="text-sm text-muted-foreground">Download all offer records as CSV</p>
               </div>
-              <Button variant="outline" size="sm">Export</Button>
+              <Button variant="outline" size="sm" onClick={() => handleExport('Offer')}>Export</Button>
             </div>
           </CardContent>
         </Card>
 
         <div className="flex justify-end gap-3">
           <Button variant="outline">Cancel</Button>
-          <Button>Save Changes</Button>
+          <Button onClick={handleSave}>Save Changes</Button>
         </div>
       </div>
     </div>

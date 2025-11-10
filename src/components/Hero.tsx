@@ -1,7 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+  
+  const scrollToFeatures = () => {
+    document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' });
+  };
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center px-4 py-20 overflow-hidden">
       {/* Background gradient */}
@@ -32,11 +38,11 @@ const Hero = () => {
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300">
-          <Button size="lg" className="group">
+          <Button size="lg" className="group" onClick={() => navigate('/login')}>
             Get Started
             <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Button>
-          <Button size="lg" variant="outline">
+          <Button size="lg" variant="outline" onClick={scrollToFeatures}>
             Learn More
           </Button>
         </div>

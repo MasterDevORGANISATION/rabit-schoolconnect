@@ -6,8 +6,31 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { Building2, Bell, Lock, CreditCard } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const PartnerSettings = () => {
+  const { toast } = useToast();
+  
+  const handleSave = () => {
+    toast({
+      title: "Settings saved",
+      description: "Your settings have been updated successfully.",
+    });
+  };
+
+  const handlePasswordUpdate = () => {
+    toast({
+      title: "Password updated",
+      description: "Your password has been changed successfully.",
+    });
+  };
+
+  const handleEnable2FA = () => {
+    toast({
+      title: "2FA Enabled",
+      description: "Two-factor authentication has been enabled for your account.",
+    });
+  };
   return (
     <div className="space-y-6">
       <div>
@@ -120,14 +143,14 @@ const PartnerSettings = () => {
               <Label htmlFor="confirm-password">Confirm New Password</Label>
               <Input id="confirm-password" type="password" />
             </div>
-            <Button variant="outline" size="sm">Update Password</Button>
+            <Button variant="outline" size="sm" onClick={handlePasswordUpdate}>Update Password</Button>
             <Separator />
             <div className="flex items-center justify-between">
               <div className="space-y-0.5">
                 <Label>Two-Factor Authentication</Label>
                 <p className="text-sm text-muted-foreground">Add an extra layer of security</p>
               </div>
-              <Button variant="outline" size="sm">Enable</Button>
+              <Button variant="outline" size="sm" onClick={handleEnable2FA}>Enable</Button>
             </div>
           </CardContent>
         </Card>
@@ -163,7 +186,7 @@ const PartnerSettings = () => {
 
         <div className="flex justify-end gap-3">
           <Button variant="outline">Cancel</Button>
-          <Button>Save Changes</Button>
+          <Button onClick={handleSave}>Save Changes</Button>
         </div>
       </div>
     </div>

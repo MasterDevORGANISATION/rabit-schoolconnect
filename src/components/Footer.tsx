@@ -1,6 +1,8 @@
 import { Rabbit } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="bg-muted/30 border-t border-border/50 py-12 px-4">
       <div className="max-w-6xl mx-auto">
@@ -20,18 +22,18 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold mb-3">For Schools</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Admin Portal</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Import Students</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Analytics</a></li>
+              <li><button onClick={() => navigate('/admin')} className="hover:text-primary transition-colors">Admin Portal</button></li>
+              <li><button onClick={() => navigate('/admin/imports')} className="hover:text-primary transition-colors">Import Students</button></li>
+              <li><button onClick={() => navigate('/admin')} className="hover:text-primary transition-colors">Analytics</button></li>
             </ul>
           </div>
           
           <div>
             <h3 className="font-semibold mb-3">For Partners</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><a href="#" className="hover:text-primary transition-colors">Create Offers</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Target Students</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Track Engagement</a></li>
+              <li><button onClick={() => navigate('/partner/offers/new')} className="hover:text-primary transition-colors">Create Offers</button></li>
+              <li><button onClick={() => navigate('/partner')} className="hover:text-primary transition-colors">Target Students</button></li>
+              <li><button onClick={() => navigate('/partner/analytics')} className="hover:text-primary transition-colors">Track Engagement</button></li>
             </ul>
           </div>
         </div>
