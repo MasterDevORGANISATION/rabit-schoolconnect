@@ -1,6 +1,6 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Home, User, LogOut, Gift } from "lucide-react";
+import { Home, User, LogOut, Gift, Bell, Bookmark } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 
 const StudentLayout = () => {
@@ -28,6 +28,24 @@ const StudentLayout = () => {
               >
                 <Home className="h-4 w-4 mr-2" />
                 Feed
+              </Button>
+            </NavLink>
+            <NavLink to="/student/saved">
+              <Button
+                variant={location.pathname === "/student/saved" ? "default" : "ghost"}
+                size="sm"
+              >
+                <Bookmark className="h-4 w-4 mr-2" />
+                Saved
+              </Button>
+            </NavLink>
+            <NavLink to="/student/notifications">
+              <Button
+                variant={location.pathname === "/student/notifications" ? "default" : "ghost"}
+                size="sm"
+              >
+                <Bell className="h-4 w-4 mr-2" />
+                Alerts
               </Button>
             </NavLink>
             <NavLink to="/student/profile">
