@@ -22,9 +22,15 @@ const Navigation = () => {
           <a href="#how-it-works" className="text-sm font-medium hover:text-primary transition-colors">
             How It Works
           </a>
-          <a href="#student-feed" className="text-sm font-medium hover:text-primary transition-colors">
-            Student View
-          </a>
+          <button onClick={() => navigate('/about')} className="text-sm font-medium hover:text-primary transition-colors">
+            About
+          </button>
+          <button onClick={() => navigate('/faq')} className="text-sm font-medium hover:text-primary transition-colors">
+            FAQ
+          </button>
+          <button onClick={() => navigate('/contact')} className="text-sm font-medium hover:text-primary transition-colors">
+            Contact
+          </button>
         </div>
         
         <div className="flex items-center gap-3">

@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="bg-muted/30 border-t border-border/50 py-12 px-4">
       <div className="max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-5 gap-8 mb-8">
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
@@ -36,10 +36,23 @@ const Footer = () => {
               <li><button onClick={() => navigate('/partner/analytics')} className="hover:text-primary transition-colors">Track Engagement</button></li>
             </ul>
           </div>
+
+          <div>
+            <h3 className="font-semibold mb-3">Company</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground">
+              <li><button onClick={() => navigate('/about')} className="hover:text-primary transition-colors">About Us</button></li>
+              <li><button onClick={() => navigate('/faq')} className="hover:text-primary transition-colors">FAQ</button></li>
+              <li><button onClick={() => navigate('/contact')} className="hover:text-primary transition-colors">Contact</button></li>
+            </ul>
+          </div>
         </div>
         
-        <div className="pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-          <p>© 2025 Rabit. All rights reserved.</p>
+        <div className="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-center text-sm text-muted-foreground">© 2025 Rabit. All rights reserved.</p>
+          <div className="flex gap-4 text-sm text-muted-foreground">
+            <button onClick={() => navigate('/privacy')} className="hover:text-primary transition-colors">Privacy Policy</button>
+            <button onClick={() => navigate('/terms')} className="hover:text-primary transition-colors">Terms of Service</button>
+          </div>
         </div>
       </div>
     </footer>
