@@ -20,7 +20,8 @@ const StudentLayout = () => {
             <h1 className="text-lg font-bold text-primary">Rabit</h1>
           </div>
 
-          <nav className="flex items-center gap-2">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-2">
             <NavLink to="/student">
               <Button
                 variant={location.pathname === "/student" ? "default" : "ghost"}
@@ -58,9 +59,44 @@ const StudentLayout = () => {
               </Button>
             </NavLink>
             <Button variant="ghost" size="sm" onClick={handleLogout}>
-              <LogOut className="h-4 w-4 mr-2" />
-              Logout
+              <LogOut className="h-4 w-4" />
             </Button>
+          </nav>
+
+          {/* Mobile Navigation */}
+          <nav className="flex md:hidden items-center gap-1">
+            <NavLink to="/student">
+              <Button
+                variant={location.pathname === "/student" ? "default" : "ghost"}
+                size="icon"
+              >
+                <Home className="h-4 w-4" />
+              </Button>
+            </NavLink>
+            <NavLink to="/student/saved">
+              <Button
+                variant={location.pathname === "/student/saved" ? "default" : "ghost"}
+                size="icon"
+              >
+                <Bookmark className="h-4 w-4" />
+              </Button>
+            </NavLink>
+            <NavLink to="/student/notifications">
+              <Button
+                variant={location.pathname === "/student/notifications" ? "default" : "ghost"}
+                size="icon"
+              >
+                <Bell className="h-4 w-4" />
+              </Button>
+            </NavLink>
+            <NavLink to="/student/profile">
+              <Button
+                variant={location.pathname === "/student/profile" ? "default" : "ghost"}
+                size="icon"
+              >
+                <User className="h-4 w-4" />
+              </Button>
+            </NavLink>
           </nav>
         </div>
       </header>
